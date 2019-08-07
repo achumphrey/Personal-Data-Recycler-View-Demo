@@ -58,7 +58,8 @@ public class PersonDataAdapter extends RecyclerView.Adapter<PersonDataAdapter.Pe
         public TextView tvSalary;
 
         public PersonViewHolder(@NonNull View itemView) {
-            super(itemView);
+            super(itemView); //the itemView is one of the numerous rows of a list.
+                            // it holds other views such as textviews, imageviews, etc.
 
             tvFirstname = itemView.findViewById(R.id.tv_firstname);
             tvLastname = itemView.findViewById(R.id.tv_lastname);
@@ -66,6 +67,7 @@ public class PersonDataAdapter extends RecyclerView.Adapter<PersonDataAdapter.Pe
             tvSalary = itemView.findViewById(R.id.tv_salary);
         }
 
+        //this method is used to bind the listener to the itemview or each row of the list
         public void bind(final PersonData person, final OnPersonClickedListener listener){
 
             itemView.setOnClickListener(new View.OnClickListener() {

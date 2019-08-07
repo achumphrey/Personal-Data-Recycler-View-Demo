@@ -30,13 +30,13 @@ public class MainActivity extends AppCompatActivity {
         personAdapter = new PersonDataAdapter(personDataList, new PersonDataAdapter.OnPersonClickedListener() {
             @Override
             public void onItemClicked(PersonData person) {
-          //      Toast.makeText(MainActivity.this, "Person name " + person.getFirstName(), Toast.LENGTH_LONG).show();
+          //    Toast.makeText(MainActivity.this, "Person name " + person.getFirstName(), Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(MainActivity.this,SecondActivity.class);
                 intent.putExtra(INTENT_MESSAGE, person);
                 startActivity(intent);
-
             }
         });
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(personAdapter);

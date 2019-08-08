@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<PersonData> personDataList;
     private RecyclerView recyclerView;
     private PersonDataAdapter personAdapter;
+    private PersonDataAdapter.OnPersonClickedListener listener;
     public static final String INTENT_MESSAGE = "message";
 
     @Override
@@ -27,7 +28,17 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerview_list);
 
-        personAdapter = new PersonDataAdapter(personDataList, new PersonDataAdapter.OnPersonClickedListener() {
+        listener = new PersonDataAdapter.OnPersonClickedListener() {
+            @Override
+            public void onItemClicked(PersonData person) {
+
+                Intent intent = new Intent(MainActivity.this,SecondActivity.class);
+                intent.putExtra(INTENT_MESSAGE, person);
+                startActivity(intent);
+            }
+        };
+
+   /*     personAdapter = new PersonDataAdapter(personDataList, new PersonDataAdapter.OnPersonClickedListener() {
             @Override
             public void onItemClicked(PersonData person) {
           //    Toast.makeText(MainActivity.this, "Person name " + person.getFirstName(), Toast.LENGTH_LONG).show();
@@ -36,8 +47,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+*/
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        personAdapter = new PersonDataAdapter(personDataList, listener);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(personAdapter);
 
@@ -48,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         personDataList = new ArrayList<>();
         for (int i = 0; i < 60; i++) {
-            PersonData person = new PersonData("firstname" + i, "lastname" + i, i, i);
+            PersonData person = new PersonData("firstname" + i, "lastname" + i, i, i+10.00);
             personDataList.add(person);
         }
 

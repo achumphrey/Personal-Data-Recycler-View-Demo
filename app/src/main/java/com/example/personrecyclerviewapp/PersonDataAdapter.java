@@ -31,6 +31,7 @@ public class PersonDataAdapter extends RecyclerView.Adapter<PersonDataAdapter.Pe
     }
 
     //bind the view holder to the data from a given position on the list
+    //each child view gets its data here. the listener is bound here as well.
     @Override
     public void onBindViewHolder(@NonNull PersonDataAdapter.PersonViewHolder holder, int position) {
 
